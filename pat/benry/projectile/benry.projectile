@@ -1,0 +1,15 @@
+{
+  "projectileName" : "pat_benry",
+  "image" : "benry.png",
+	"physics" : "pat_benry",
+	"damageType" : "NoDamage",
+	"onlyHitTerrain " : true,
+	"piercing" : true,
+	"speed" : 50,
+	"timeToLive" : 2.5,
+  "animationCycle" : 0.05,
+  "frameNumber" : 1,
+	"winddownFrames" : 4,
+	"fullbright" : true,
+	"renderLayer" : "ForegroundOverlay+10"
+}
