@@ -5,6 +5,8 @@ require "/scripts/interp.lua"
 function init()
 	timer = 0
 	activeItem.setHoldingItem(false)
+	
+	icon = root.itemConfig(item.name()).config.inventoryIcon
 end
 
 function update(dt, fireMode, shiftHeld)
@@ -16,6 +18,7 @@ function update(dt, fireMode, shiftHeld)
 	local hue = interp.linear(mag, 0, 359)
 	
 	activeItem.setCursor("/pat/benry/cursor/"..math.floor(interp.linear(mag, 0, 71))..".cursor")
+	activeItem.setInventoryIcon(icon.."?hueshift="..math.floor(hue))
 	
 	animator.setSoundPitch("prima", interp.linear(mag, 0.9, 1.2), dt)
 
@@ -44,5 +47,6 @@ function aimVector(aimAngle)
 end
 
 function uninit()
+	activeItem.setInventoryIcon(icon)
 	animator.stopAllSounds("prima")
 end

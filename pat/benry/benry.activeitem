@@ -8,7 +8,7 @@
   "twoHanded" : true,
   "itemTags" : [],
 	
-  "inventoryIcon" : "benry.png",
+  "inventoryIcon" : "/pat/benry/benry.png",
 	
 	"scripts" : ["/pat/benry/benry.lua"],
 	
