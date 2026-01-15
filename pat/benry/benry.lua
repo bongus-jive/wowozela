@@ -17,7 +17,7 @@ function update(dt, fireMode, shiftHeld)
 	local mag = (util.clamp(world.magnitude(pos, activeItem.ownerAimPosition()), 5, 25) - 5) / 20
 	local hue = interp.linear(mag, 0, 359)
 	
-	activeItem.setCursor("/pat/benry/cursor/"..math.floor(interp.linear(mag, 0, 71))..".cursor")
+	activeItem.setCursor("/pat/benry/cursor/cursor.cursors:"..math.floor(interp.linear(mag, 0, 71)))
 	activeItem.setInventoryIcon(icon.."?hueshift="..math.floor(hue))
 	
 	animator.setSoundPitch("prima", interp.linear(mag, 0.9, 1.2), dt)
