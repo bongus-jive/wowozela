@@ -1,0 +1,46 @@
+{
+  "itemName": "pat_wowozela",
+  "maxStack": 1,
+  "description": "",
+  "shortdescription": "Wowozela",
+  "category": "musicalInstrument",
+  "rarity": "essential",
+  "twoHanded": true,
+  "itemTags": [ "pat_wowozela" ],
+  "inventoryIcon": "/pat/wowozela/particle_glow_02.png",
+
+  "scripts": [ "/pat/wowozela/wowozela.lua" ],
+
+  "animationCustom": {
+    "sounds": {
+      "primary": [ ],
+      "alt": [ ]
+    }
+  },
+
+  "particleConfig": {
+    "specification": {
+      "type": "textured",
+      "image": "/pat/wowozela/projectiles/particle.png",
+      "layer": "front",
+      "size": 0.04,
+      "fullbright": true,
+      "timeToLive": 2.5,
+      "destructionTime": 2.5,
+      "destructionAction": "fade",
+      "collidesForeground": false,
+      "collidesLiquid": false
+    },
+
+    "distance": 0.5,
+    "speed": 30,
+    "resistance": 110,
+
+    "sizeAmplitude": 0.007,
+    "sizePeriod": 0.05,
+
+    "offset": [ 0, 0.3125 ],
+    "crouchOffset": [ 0, -1 ],
+    "offsetApproachRate": 0.33
+  }
+}
