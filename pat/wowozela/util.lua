@@ -1,0 +1,24 @@
+wowoUtil = {}
+
+function wowoUtil.hsvToRgb(h, s, v, a)
+  if not s then s = 1 end
+  if not v then v = 1 end
+
+  h = (h / 360) % 1
+  local i = math.floor(h * 6)
+  local f = h * 6 - i
+  local p = v * (1 - s)
+  local q = v * (1 - f * s)
+  local t = v * (1 - (1 - f) * s)
+  i = i % 6
+  
+  local r, g, b
+  if     i == 0 then r, g, b = v, t, p
+  elseif i == 1 then r, g, b = q, v, p
+  elseif i == 2 then r, g, b = p, v, t
+  elseif i == 3 then r, g, b = p, q, v
+  elseif i == 4 then r, g, b = t, p, v
+  elseif i == 5 then r, g, b = v, p, q end
+
+  return { r * 255, g * 255, b * 255, a }
+end

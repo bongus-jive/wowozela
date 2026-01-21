@@ -38,16 +38,16 @@ function update(dt, fireMode, shiftHeld)
   local aimDir = aimPos[1] > mcontroller.xPosition() and 1 or -1
   activeItem.setFacingDirection(aimDir)
 
-  local aimDegrees = ((aimAngle * 180 / math.pi) + 90) % 180
+  local aimDegrees = (math.deg(aimAngle) + 90) % 180
   if aimDir == -1 then aimDegrees = 180 - aimDegrees end
-  ParticleSpawner:setHue(aimDegrees * 2.7)
 
   local pitch = aimDegrees / 89
   PrimarySound:setPitch(pitch)
   AltSound:setPitch(pitch)
 
   if PrimarySound.playing or AltSound.playing then
-    ParticleSpawner:spawn(aimAngle)
+    local hue = aimDegrees * 2.7
+    ParticleSpawner:spawn(aimAngle, hue)
     
     activeItem.emote("Blabbering")
     IsPlaying = true
