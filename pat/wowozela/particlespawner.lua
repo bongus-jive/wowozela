@@ -9,7 +9,7 @@ function ParticleSpawner:init(cfg)
   self.particle.finalVelocity = { 0, 0 }
 
   local action = { action = "particle", specification = self.particle, time = 0, ["repeat"] = false }
-  self.projectileParams = { actionOnReap = { action } }
+  self.projectileParams = { periodicActions = { action } }
 
   cfg.crouchOffset = vec2.add(cfg.offset, cfg.crouchOffset)
   self.offset = cfg.offset
@@ -36,6 +36,5 @@ function ParticleSpawner:spawn(angle, hue)
   
   local position = vec2.add(mcontroller.position(), self.offset)
 
-  local id = world.spawnProjectile("pat_wowozela_particlespawner", position, entity.id(), { 0, 0 }, true, self.projectileParams)
-  world.callScriptedEntity(id, "projectile.die")
+  world.spawnProjectile("pat_wowozela_particlespawner", position, entity.id(), { 0, 0 }, true, self.projectileParams)
 end
