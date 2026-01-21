@@ -1,26 +1,25 @@
 require "/pat/wowozela/soundplayer.lua"
 require "/pat/wowozela/particlespawner.lua"
-require "/scripts/interp.lua"
 
 function init()
   activeItem.setHoldingItem(false)
+  if not player then return script.setUpdateDelta(0) end
 
   PrimarySound = SoundPlayer:new("primary")
   AltSound = SoundPlayer:new("alt")
-  
+
   ParticleSpawner:init(config.getParameter("particleConfig"))
 
-  do -- no menu yet <3
-    local samples = root.assetJson("/pat/wowozela/samples/samples.config")
-    local sounds = {}
-    for category, files in pairs(samples) do
-      for _, file in pairs(files) do
-        table.insert(sounds, string.format("/pat/wowozela/samples/%s/%s", category, file))
-      end
-    end
-    PrimarySound:setSound(sounds[math.random(#sounds)])
-    AltSound:setSound(sounds[math.random(#sounds)])
-  end
+  getSounds()
+  message.setHandler("pat_wowozela_updateSounds", function(_, isLocal)
+    if isLocal then getSounds() end
+  end)
+end
+
+function getSounds()
+  local data = player.getProperty("pat_wowozela") or {}
+  PrimarySound:setSound(data.primary)
+  AltSound:setSound(data.alt)
 end
 
 function update(dt, fireMode, shiftHeld)
@@ -56,7 +55,7 @@ function update(dt, fireMode, shiftHeld)
     IsPlaying = false
   end
 
-  sb.setLogMap("^pink;Wowozela M1", PrimarySound.sound)
-  sb.setLogMap("^pink;Wowozela M2", AltSound.sound)
-  sb.setLogMap("^pink;Wowozela Pitch", pitch)
+  sb.setLogMap("^pink;Wowozela M1", "%s", PrimarySound.sound)
+  sb.setLogMap("^pink;Wowozela M2", "%s", AltSound.sound)
+  sb.setLogMap("^pink;Wowozela Pitch", "%s", pitch)
 end

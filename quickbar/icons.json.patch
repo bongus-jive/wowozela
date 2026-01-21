@@ -1,0 +1,12 @@
+[
+  {
+    "op": "add",
+    "path": "/items/patman:wowozela",
+    "value": {
+      "label": "^#ff80ce;Wowozela",
+      "icon": "/pat/wowozela/particle_glow_02.png?scalenearest=0.14",
+      "action": [ "pane", "/pat/wowozela/menu/wowozela.config" ],
+			"condition" : [ "hasTaggedItem", "pat_wowozela" ]
+    }
+  }
+]
