@@ -9,7 +9,7 @@ function ParticleSpawner:init(cfg)
   self.particle.finalVelocity = { 0, 0 }
 
   local action = { action = "particle", specification = self.particle, time = 0, ["repeat"] = false }
-  self.projectileParams = { periodicActions = { action } }
+  self.projectileParams = { periodicActions = { action }, onlyHitTerrain = true }
 
   cfg.crouchOffset = vec2.add(cfg.offset, cfg.crouchOffset)
   self.offset = cfg.offset

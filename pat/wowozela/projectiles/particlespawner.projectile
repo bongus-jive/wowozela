@@ -3,7 +3,6 @@
   "image": "invisible.png",
   "speed": 0,
   "timeToLive": 0.05,
-  "onlyHitTerrain ": true,
   "movementSettings": {
     "collisionEnabled": false,
     "frictionEnabled": false,
