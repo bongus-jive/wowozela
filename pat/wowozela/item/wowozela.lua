@@ -1,5 +1,5 @@
-require "/pat/wowozela/soundplayer.lua"
-require "/pat/wowozela/particlespawner.lua"
+require "/pat/wowozela/item/soundplayer.lua"
+require "/pat/wowozela/item/particlespawner.lua"
 
 function init()
   activeItem.setHoldingItem(false)

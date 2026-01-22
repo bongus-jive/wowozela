@@ -7,9 +7,9 @@
   "rarity": "essential",
   "twoHanded": true,
   "itemTags": [ "pat_wowozela" ],
-  "inventoryIcon": "/pat/wowozela/particle_glow_02.png",
+  "inventoryIcon": "particle_glow_02.png",
 
-  "scripts": [ "/pat/wowozela/wowozela.lua" ],
+  "scripts": [ "wowozela.lua" ],
 
   "animationCustom": {
     "sounds": {
