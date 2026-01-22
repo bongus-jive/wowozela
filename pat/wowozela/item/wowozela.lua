@@ -27,6 +27,10 @@ function update(dt, fireMode, shiftHeld)
     local firing = fireMode ~= "none"
     PrimarySound:update(firing and input.mouse("MouseLeft"))
     AltSound:update(firing and input.mouse("MouseRight"))
+
+    if input.bindDown("pat_wowozela", "menu") then
+      activeItem.interact("ScriptPane", { baseConfig = "/pat/wowozela/menu/wowozela.config", holdBind = true })
+    end
   else
     PrimarySound:update(fireMode == "primary")
     AltSound:update(fireMode == "alt")

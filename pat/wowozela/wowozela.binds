@@ -1,0 +1,11 @@
+{
+  "pat_wowozela": {
+    "name": "^#ff80ce;Wowozela^reset;",
+    "binds": {
+      "menu": {
+        "name": "Display wheel",
+        "default": [ ]
+      }
+    }
+  }
+}

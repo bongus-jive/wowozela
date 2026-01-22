@@ -28,9 +28,15 @@ function init()
   local data = player.getProperty("pat_wowozela") or samples.defaults
   Radial:setSelected(data.primary, data.alt)
   setPage(data.page or 1)
+
+  HoldBind = input and config.getParameter("holdBind", false)
 end
 
 function update()
+  if HoldBind and not input.bind("pat_wowozela", "menu") then
+    pane.dismiss()
+  end
+
   Radial:update()
 end
 
