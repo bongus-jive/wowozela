@@ -4,7 +4,7 @@
     "path": "/items/patman:wowozela",
     "value": {
       "label": "^#ff80ce;Wowozela",
-      "icon": "/pat/wowozela/item/particle_glow_02.png?scalenearest=0.14",
+      "icon": "/pat/wowozela/menu/images/quickbar.png",
       "action": [ "pane", "/pat/wowozela/menu/wowozela.config" ],
 			"condition" : [ "hasTaggedItem", "pat_wowozela" ]
     }
