@@ -28,8 +28,6 @@ function init()
   local data = player.getProperty("pat_wowozela") or samples.defaults
   Radial:setSelected(data.primary, data.alt)
   setPage(data.page or 1)
-
-  --Radial:setSelected("/pat/wowozela/samples/voices/kleiner.ogg", "/pat/wowozela/samples/drums/amenbreak.ogg")
 end
 
 function update()
