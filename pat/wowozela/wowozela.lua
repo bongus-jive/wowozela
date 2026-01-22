@@ -17,7 +17,7 @@ function init()
 end
 
 function getSounds()
-  local data = player.getProperty("pat_wowozela") or {}
+  local data = player.getProperty("pat_wowozela") or root.assetJson("/pat/wowozela/samples/samples.config:defaults")
   PrimarySound:setSound(data.primary)
   AltSound:setSound(data.alt)
 end

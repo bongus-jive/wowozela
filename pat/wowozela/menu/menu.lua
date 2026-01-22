@@ -11,7 +11,7 @@ function init()
   Pages = {}
   local samples = root.assetJson("/pat/wowozela/samples/samples.config")
   
-  for category, files in pairs(samples) do
+  for category, files in pairs(samples.categories) do
     local list = {}
     for _, file in ipairs(files) do
       if file:sub(1, 1) ~= "/" then
@@ -25,7 +25,7 @@ function init()
   end
   table.sort(Pages, function(a, b) return a.category < b.category end)
 
-  local data = player.getProperty("pat_wowozela") or {}
+  local data = player.getProperty("pat_wowozela") or samples.defaults
   Radial:setSelected(data.primary, data.alt)
   setPage(data.page or 1)
 
