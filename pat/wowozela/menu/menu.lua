@@ -32,15 +32,18 @@ function init()
   HoldBind = input and config.getParameter("holdBind", false)
 end
 
-function update()
+function update(dt)
   if HoldBind and not input.bind("pat_wowozela", "menu") then
     pane.dismiss()
   end
 
-  Radial:update()
+  Radial:update(dt, cursorInPane)
+
+  if cursorInPane then cursorInPane = false end
 end
 
 function cursorOverride(pos)
+  cursorInPane = true
   PageScroller:update(pos)
 end
 

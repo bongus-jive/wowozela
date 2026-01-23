@@ -18,18 +18,19 @@ function RadialWidget:init()
   self.mouseEvent = function(...) self:click(...) end
 end
 
-function RadialWidget:update()
+function RadialWidget:update(dt, inPane)
   if not self.built then return end
 
-  local mousePosition = self.canvas:mousePosition()
-  local mouseDistance = vec2.sub(self.center, mousePosition)
-  local mouseMag = vec2.mag(mouseDistance)
+  self.hoverIndex = nil
+  if inPane then
+    local mousePosition = self.canvas:mousePosition()
+    local mouseDistance = vec2.sub(self.center, mousePosition)
+    local mouseMag = vec2.mag(mouseDistance)
 
-  if self.config.innerRadius <= mouseMag and mouseMag <= self.config.outerRadius then
-    local angle = (rad270 - math.atan(mouseDistance[2], mouseDistance[1])) % rad360
-    self.hoverIndex = (angle // self.sliceSize) % self.sliceCount + 1
-  else
-    self.hoverIndex = nil
+    if self.config.innerRadius <= mouseMag and mouseMag <= self.config.outerRadius then
+      local angle = (rad270 - math.atan(mouseDistance[2], mouseDistance[1])) % rad360
+      self.hoverIndex = (angle // self.sliceSize) % self.sliceCount + 1
+    end
   end
 
   self:draw()
