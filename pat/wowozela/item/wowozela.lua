@@ -41,8 +41,8 @@ function update(dt, fireMode, shiftHeld)
   local aimDir = aimPos[1] > mcontroller.xPosition() and 1 or -1
   activeItem.setFacingDirection(aimDir)
 
-  local aimDegrees = (math.deg(aimAngle) + 90) % 180
-  if aimDir == -1 then aimDegrees = 180 - aimDegrees end
+  local aimDegrees = (math.deg(aimAngle) + 90) % 360
+  if aimDegrees > 180 then aimDegrees = 360 - aimDegrees end
 
   local pitch = aimDegrees / 89
   PrimarySound:setPitch(pitch)
