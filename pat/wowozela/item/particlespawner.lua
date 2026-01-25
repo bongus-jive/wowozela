@@ -10,12 +10,9 @@ function ParticleSpawner:init(cfg)
 
   local action = { action = "particle", specification = self.particle, time = 0, ["repeat"] = false }
   self.projectileParams = { periodicActions = { action }, onlyHitTerrain = true }
-
-  cfg.crouchOffset = vec2.add(cfg.offset, cfg.crouchOffset)
-  self.offset = cfg.offset
 end
 
-function ParticleSpawner:spawn(angle, hue)
+function ParticleSpawner:spawn(position, angle, hue)
   local cfg = self.config
   local spec = self.particle
 
@@ -26,15 +23,6 @@ function ParticleSpawner:spawn(angle, hue)
   spec.approach = vec2.withAngle(angle, cfg.resistance)
   spec.approach[1] = math.abs(spec.approach[1])
   spec.approach[2] = math.abs(spec.approach[2])
-
-  local targetOffset = mcontroller.crouching() and cfg.crouchOffset or cfg.offset
-  targetOffset = vec2.rotate(targetOffset, mcontroller.rotation())
-
-  if not vec2.eq(self.offset, targetOffset) then
-    self.offset = vec2.approach(self.offset, targetOffset, cfg.offsetApproachRate)
-  end
   
-  local position = vec2.add(mcontroller.position(), self.offset)
-
   world.spawnProjectile("pat_wowozela_particlespawner", position, entity.id(), { 0, 0 }, true, self.projectileParams)
 end

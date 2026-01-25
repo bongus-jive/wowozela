@@ -37,10 +37,12 @@
     "resistance": 110,
 
     "sizeAmplitude": 0.007,
-    "sizePeriod": 0.05,
+    "sizePeriod": 0.05
+  },
 
-    "offset": [ 0, 0.3125 ],
-    "crouchOffset": [ 0, -1 ],
-    "offsetApproachRate": 0.33
+  "spawnOffset": {
+    "normal": [ 0, 0.3125 ],
+    "crouch": [ 0, -0.6875 ],
+    "approachRate": 20
   }
 }
