@@ -44,5 +44,7 @@
     "normal": [ 0, 0.3125 ],
     "crouch": [ 0, -0.6875 ],
     "approachRate": 20
-  }
+  },
+
+  "cursorFile": "/pat/wowozela/cursor/cursor.cursors"
 }

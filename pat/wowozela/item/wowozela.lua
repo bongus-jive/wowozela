@@ -12,6 +12,10 @@ function init()
   SpawnOffset = config.getParameter("spawnOffset")
   SpawnOffset.current = SpawnOffset.normal
 
+  CursorFile = config.getParameter("cursorFile")
+  CursorCount = #root.assetJson(CursorFile)
+  CursorFile = CursorFile .. ":%.0f"
+
   ParticleSpawner:init(config.getParameter("particleConfig"))
 
   getSounds()
@@ -58,8 +62,10 @@ function update(dt, fireMode, shiftHeld)
   PrimarySound:setPitch(pitch)
   AltSound:setPitch(pitch)
 
+  local hue = (aimDegrees * 2.7) % 360
+  activeItem.setCursor(string.format(CursorFile, math.floor(hue / 360 * CursorCount)))
+  
   if PrimarySound.playing or AltSound.playing then
-    local hue = aimDegrees * 2.7
     ParticleSpawner:spawn(spawnPos, aimAngle, hue)
     
     activeItem.emote("Blabbering")
