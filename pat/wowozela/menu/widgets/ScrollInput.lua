@@ -12,48 +12,58 @@ end
 function ScrollInputWidget:init()
   self.position = {0, 0}
   self.size = widget.getSize(self.widgetName)
-  self._skip = 3
   
   self.origin = fmt("%s.origin", self.widgetName)
   self.wheelUp = fmt("%s.wheel.up", self.widgetName)
   self.wheelTarget = fmt("%s.wheel.target", self.widgetName)
 
+  self.wheelConfig = {
+    type = "scrollArea",
+    size = self.size,
+    verticalScroll = false,
+    children = {
+      target = { type = "widget", size = {self.size[1], 1} },
+      up = { type = "widget", size = {self.size[1], 1000} }
+    }
+  }
+
   widget.removeAllChildren(self.widgetName)
-  widget.addChild(self.widgetName, {type = "widget", size = {self.size[1], 1}}, "origin")
+  widget.addChild(self.widgetName, { type = "widget", size = {self.size[1], 1} }, "origin")
   self:createWheel()
 end
 
 function ScrollInputWidget:createWheel()
   widget.removeChild(self.widgetName, "wheel")
-  local cfg = {
-    type = "scrollArea",
-    size = self.size,
-    verticalScroll = false,
-    children = {
-      target = { type = "widget", size = {self.size[1], 1}},
-      up = { type = "widget", size = {self.size[1], 1000}}
-    }
-  }
-  widget.addChild(self.widgetName, cfg, "wheel")
+  widget.addChild(self.widgetName, self.wheelConfig, "wheel")
+  self.active = false
 end
 
 function ScrollInputWidget:update(mousePos)
   if not widget.inMember(self.widgetName, mousePos) then return end
 
+  if input then -- se/osb
+    for _, event in ipairs(input.events()) do
+      if event.type == "MouseWheel" then
+        self.callback(event.data.mouseWheel > 0)
+        break
+      end
+    end
+    return
+  end
+
   if not widget.inMember(self.origin, self.position) then
     self.position = self:findOrigin(mousePos)
   end
 
-  if self._skip then
-    self._skip = self._skip - 1
-    if self._skip <= 0 then self._skip = nil end
-    return
-  end
-
   if not widget.inMember(self.wheelTarget, self.position) then
-    local up = widget.inMember(self.wheelUp, self.position)
-    self.callback(up)
+    if self.active then
+      local up = widget.inMember(self.wheelUp, self.position)
+      self.callback(up)
+    end
+
     self:createWheel()
+  elseif not self.active then
+    self.active = true
   end
 end
 
